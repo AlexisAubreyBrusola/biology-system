@@ -1,0 +1,1 @@
+<?php header('location: ./view/login.view.php'); ?>

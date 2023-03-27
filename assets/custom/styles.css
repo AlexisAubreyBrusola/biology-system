@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+:root {
+    --blue: #5463FF;
+    --white-background: #EEEEEE;
+    --orange: #FE6701;
+    --black: #292C3D;
+    --red: #DF2E38;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--black);
+    background-color: var(--white-background);
+}
+
+.bg-blue {
+    background-color: var(--blue);
+}
+
+.shadow {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.bg-orange {
+    background-color: var(--orange);
+}
+
+.invalid-mssg {
+    background-color: var(--red);
+    padding: 1rem;
+    border-radius: 5px;
+}
