@@ -20,8 +20,9 @@
 <body>
     <?php include_once '../include/header.inc.php';?>
     <main>
-        <h1>Hello <?php echo $_SESSION['admin_firstname'] . ' ' . $_SESSION['admin_lastname'];?> !</h1>
-        <a href="../controllers/logout.controller.php">Logout</a>
+        <?php include_once '../include/sidebar.inc.php';?>
+        
     </main>
+    <?php include_once '../include/footer.inc.php'?>
 </body>
 </html>

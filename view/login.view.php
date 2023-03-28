@@ -66,6 +66,7 @@ if (isset($_POST['submit'])) {
             <div class="container g-0 form-grup col-lg-6">
                 <h1 class="fw-bold fs-32 mb-5 text-center">Login</h1>
 
+                <!-- Show when there's an error -->
                 <?php if (isset($errorMessage)) { ?>
                     <div class="invalid-mssg container fw-semibold text-center py-3 mb-3" style="font-size: 1rem; color: #EEEEEE;">
                         <?php echo $errorMessage; ?>

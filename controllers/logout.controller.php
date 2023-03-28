@@ -1,4 +1,5 @@
 <?php
+include_once '../include/session.inc.php';
 require_once '../config/dbConn.config.php';
 require_once '../models/user.model.php';
 require_once '../controllers/login.controller.php';

@@ -31,3 +31,20 @@ body {
     padding: 1rem;
     border-radius: 5px;
 }
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    width: 320px; 
+    height: 100vh;
+    margin-top: 55px;
+    background-color: var(--blue);
+}
+
+.sidebar .nav-item {
+    font-size: 1.25rem;
+}
+
+.sidebar .nav-link {
+    padding: 1rem 1.25rem;
+}
