@@ -49,7 +49,6 @@ class Login {
         unset($_SESSION['admin_lastname']);
         unset($_SESSION['user_type']);
         session_destroy();
-        echo "<script type='text/javascript'>alert('Successfully logged out!');</script>";
         header('Location: ../view/login.view.php');
     }
 
@@ -83,12 +82,11 @@ class Login {
         unset($_SESSION['borrower_id']);
         unset($_SESSION['borrower_email']);
         unset($_SESSION['borrower_firstname']);
-        unset($SESSION['borrower_lastname']);
-        unset($SESSION['borrower_type']);
-        unset($SESSION['contact_no']);
-        unset($SESSION['user_type']);
+        unset($_SESSION['borrower_lastname']);
+        unset($_SESSION['borrower_type']);
+        unset($_SESSION['contact_no']);
+        unset($_SESSION['user_type']);
         session_destroy();
-        echo "<script type='text/javascript'>alert('Successfully logged out!');</script>";
         header('Location: ../view/login.view.php');
     }
 }

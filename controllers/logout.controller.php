@@ -3,15 +3,20 @@ require_once '../config/dbConn.config.php';
 require_once '../models/user.model.php';
 require_once '../controllers/login.controller.php';
 
+// Create instances of DBConn, User, and Login
 $db = new DBConn;
 $model = new User($db);
 $controller = new Login($model);
 
-if ($SESSION['user_type'] == 'admin') {
-    $logoutController->logoutAdmin(); 
+// Check the user type and call the appropriate logout function
+if ($_SESSION['user_type'] == 'admin') {
+    $controller->logoutAdmin();
+    echo "<script type='text/javascript'>alert('Successfully logged out!');</script>";
 } else if ($_SESSION['user_type'] == 'borrower') {
-    $logoutController->logoutBorrower();
+    $controller->logoutBorrower();
+    echo "<script type='text/javascript'>alert('Successfully logged out!');</script>";
 }
 
+// Redirect to the login page
 header("Location: ../view/login.view.php");
 exit();
