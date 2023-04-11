@@ -29,11 +29,11 @@
         </li>
 
         <li class="nav-item">
-            <a class="d-flex align-items-center nav-link text-decoration-none" href="#"><i class="fa-solid fa-user me-3 fs-4"></i>Admin</a>
+            <a class="d-flex align-items-center nav-link text-decoration-none" href="../view/admin.php"><i class="fa-solid fa-user me-3 fs-4"></i>Admin</a>
         </li>
 
         <li class="nav-item">
-            <a class="d-flex align-items-center nav-link text-decoration-none" href="#"><i class="fa-solid fa-user-plus me-2 fs-4"></i>Add Borrower</a>
+            <a class="d-flex align-items-center nav-link text-decoration-none" href="../view/borrower.php"><i class="fa-solid fa-user-plus me-2 fs-4"></i>Add Borrower</a>
         </li>
     </ul>
 </aside>

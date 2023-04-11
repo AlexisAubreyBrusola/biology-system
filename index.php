@@ -1,4 +1,4 @@
-<?php header('location: ./view/login.view.php'); ?>
+<?php header('location: ./view/login.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
