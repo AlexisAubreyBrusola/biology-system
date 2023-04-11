@@ -1,3 +1,10 @@
+/* PLEASE ENTER THIS QUERY TO HAVE A TEST ADMIN ACCOUNT 
+
+INSERT INTO `admin` (`admin_id`, `firstname`, `lastname`, `email`, `password`, `date_created`) VALUES (NULL, 'Admin1', 'Lastname', 'admin@gmail.com', '$2y$10$jUeZKPpbIRtgTW326MkUP.snrERlCg.XissqJR33Q71eqrHEB7Ab.', current_timestamp());
+
+*/
+
+
 -- SEMESTER
 CREATE TABLE IF NOT EXISTS semester (
     semester_id INT NOT NULL AUTO_INCREMENT,
@@ -6,46 +13,46 @@ CREATE TABLE IF NOT EXISTS semester (
     end_date DATETIME NOT NULL,
     PRIMARY KEY (semester_id)
 );
-CREATE TABLE IF NOT EXISTS user_type (
-    user_type_id int NOT NULL AUTO_INCREMENT,
-    type_name varchar(50) NOT NULL UNIQUE,
-    PRIMARY KEY (user_type_id)
+CREATE TABLE IF NOT EXISTS borrower_type (
+    borrower_type_id int NOT NULL AUTO_INCREMENT,
+    type_name varchar(100) NOT NULL UNIQUE,
+    PRIMARY KEY (borrower_type_id)
 );
--- USERS
-CREATE TABLE IF NOT EXISTS users (
-    user_id int NOT NULL AUTO_INCREMENT,
-    user_type_id int NOT NULL,
+-- BORROWERS
+CREATE TABLE IF NOT EXISTS borrowers (
+    borrower_id int NOT NULL AUTO_INCREMENT,
+    borrower_type_id int NOT NULL,
     firstname varchar(100) NOT NULL,
     lastname varchar(100) NOT NULL,
     email varchar(255) NOT NULL UNIQUE,
-    password varchar(50) NOT NULL,
+    password varchar(255) NOT NULL,
     contact_no varchar(12),
     date_created DATETIME DEFAULT NOW(),
-    PRIMARY KEY (user_id),
-    FOREIGN KEY (user_type_id) REFERENCES user_type (user_type_id)
+    PRIMARY KEY (borrower_id),
+    FOREIGN KEY (borrower_type_id) REFERENCES borrower_type (borrower_type_id)
 );
 -- STUDENT
 CREATE TABLE IF NOT EXISTS student (
     student_id VARCHAR(50) NOT NULL,
-    user_id INT NOT NULL,
+    borrower_id INT NOT NULL,
     course VARCHAR(255) NOT NULL,
     year_block VARCHAR(3) NOT NULL,
     PRIMARY KEY (student_id),
-    FOREIGN KEY (user_id) REFERENCES users (user_id)
+    FOREIGN KEY (borrower_id) REFERENCES borrowers (borrower_id)
 );
 -- RESEARCH STAFF
 CREATE TABLE IF NOT EXISTS research_staff (
     research_staff_id VARCHAR(50) NOT NULL,
-    user_id INT NOT NULL,
+    borrower_id INT NOT NULL,
     PRIMARY KEY (research_staff_id),
-    FOREIGN KEY (user_id) REFERENCES users (user_id)
+    FOREIGN KEY (borrower_id) REFERENCES borrowers (borrower_id)
 );
 -- FACULTY
 CREATE TABLE IF NOT EXISTS faculty (
     faculty_id VARCHAR(50) NOT NULL,
-    user_id INT NOT NULL,
+    borrower_id INT NOT NULL,
     PRIMARY KEY (faculty_id),
-    FOREIGN KEY (user_id) REFERENCES users (user_id)
+    FOREIGN KEY (borrower_id) REFERENCES borrowers (borrower_id)
 );
 -- ADMIN
 CREATE TABLE IF NOT EXISTS admin (  
@@ -53,7 +60,7 @@ CREATE TABLE IF NOT EXISTS admin (
     firstname VARCHAR(255) NOT NULL UNIQUE,
     lastname VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     date_created DATETIME DEFAULT NOW(),
     PRIMARY KEY (admin_id)
 );
@@ -78,6 +85,7 @@ CREATE TABLE IF NOT EXISTS equipment (
     category_id INT NOT NULL,
     description VARCHAR(255) NOT NULL,
     status_id INT NOT NULL,
+    photo varchar(255),
     times_borrowed INT NOT NULL DEFAULT 0,
     date_added DATETIME NOT NULL DEFAULT NOW(),
     PRIMARY KEY (equipment_id),
@@ -101,6 +109,7 @@ CREATE TABLE IF NOT EXISTS chemical (
     expiration_date DATETIME NOT NULL,
     date_acquired DATETIME,
     status_id INT NOT NULL,
+    photo varchar(255),
     times_borrowed INT NOT NULL DEFAULT 0,
     date_added DATETIME NOT NULL DEFAULT NOW(),
     PRIMARY KEY (chemical_id, container),
@@ -134,7 +143,7 @@ CREATE TABLE IF NOT EXISTS basket_inventory (
 CREATE TABLE IF NOT EXISTS reservation (
     reservation_id INT NOT NULL AUTO_INCREMENT,
     reference_no VARCHAR(50) NOT NULL UNIQUE,
-    user_id INT NOT NULL,
+    borrower_id INT NOT NULL,
     faculty_id VARCHAR(50),
     admin_id INT NOT NULL,
     lab_experiment_title VARCHAR(255) NOT NULL,
@@ -142,17 +151,17 @@ CREATE TABLE IF NOT EXISTS reservation (
     return_date DATETIME NOT NULL,
     semester_id INT NOT NULL,
     PRIMARY KEY (reservation_id),
-    FOREIGN KEY (user_id) REFERENCES users (user_id),
+    FOREIGN KEY (borrower_id) REFERENCES borrowers (borrower_id),
     FOREIGN KEY (faculty_id) REFERENCES faculty (faculty_id),
     FOREIGN KEY (admin_id) REFERENCES admin (admin_id),
     FOREIGN KEY (semester_id) REFERENCES semester (semester_id)
 );
 -- GROUP MEMBERS
 CREATE TABLE IF NOT EXISTS group_members (
-    user_id INT NOT NULL,
+    borrower_id INT NOT NULL,
     reservation_id INT NOT NULL,
-    PRIMARY KEY (user_id),
-    FOREIGN KEY (user_id) REFERENCES users (user_id),
+    PRIMARY KEY (borrower_id),
+    FOREIGN KEY (borrower_id) REFERENCES borrowers (borrower_id),
     FOREIGN KEY (reservation_id) REFERENCES reservation (reservation_id)
 );
 CREATE TABLE IF NOT EXISTS reservation_equipment (

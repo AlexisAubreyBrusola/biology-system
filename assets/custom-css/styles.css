@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
     --blue: #5463FF;
@@ -9,21 +9,42 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito-Sans', sans-serif;
     color: var(--black);
     background-color: var(--white-background);
+}
+
+/*********** Colors *************/
+.bg-white {
+    background-color: var(--white-background);
+}
+
+.font-white {
+    color: var(--white-background);
 }
 
 .bg-blue {
     background-color: var(--blue);
 }
 
-.shadow {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+.font-blue {
+    color: var(--blue);
 }
 
 .bg-orange {
     background-color: var(--orange);
+}
+
+.font-orange {
+    color: var(--orange);
+}
+
+.bg-red {
+    background-color: var(--red);
+}
+
+.font-red {
+    color: var(--red);
 }
 
 .invalid-mssg {
@@ -32,12 +53,15 @@ body {
     border-radius: 5px;
 }
 
+/* Shadow */
+.shadow {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 /*********** SIDEBAR ************/
 .sidebar {
-    position: fixed;
     width: 320px; 
     height: 100vh;
-    margin-top: 55px;
     background-color: var(--blue);
 }
 
@@ -53,4 +77,9 @@ body {
 .sidebar .nav-link:hover {
     background-color: #ffffff;
     color: var(--blue);
+}
+
+/*********** CONTENT ************/
+.content {
+    height: 100vh;
 }

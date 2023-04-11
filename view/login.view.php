@@ -14,7 +14,8 @@ if (isset($_POST['submit'])) {
 
     if($controller->adminLogin($email, $password)) {
         // Redirect to dashboard page if login successful
-        header('Location: ../view/dashboard.php');
+        $msg = 'Welcome Admin!';
+        header("Location: ../view/dashboard.php?msg=".urldecode($msg));
         exit;
     } 
     else {
@@ -63,7 +64,7 @@ if (isset($_POST['submit'])) {
 <body>
     <main class="row g-0" style="height: 100vh;">
         <section class="login-form-section col-lg-6">
-            <div class="container g-0 form-grup col-lg-6">
+            <div class="container g-0 form-group col-lg-6">
                 <h1 class="fw-bold fs-32 mb-5 text-center">Login</h1>
 
                 <!-- Show when there's an error -->

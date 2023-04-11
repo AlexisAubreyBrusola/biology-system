@@ -27,7 +27,8 @@ $counter = ($year_code != $latest_year) ? 0 : intval($latest_counter) + 1;
 
 // 
 $counter_str = str_pad($counter, 4, '0', STR_PAD_LEFT);
-$new_reference_no = $year_code. '-' . $counter_str; 
+$new_reference_no = $year_code. '-' . $counter_str;
+$hashed_password = password_hash('A@ubrey8052000', PASSWORD_DEFAULT);
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +45,7 @@ $new_reference_no = $year_code. '-' . $counter_str;
     <p class="fs-3 fw-semibold">Counter: <b><?php echo $counter?></b></p>
     <p class="fs-3 fw-semibold">Next counter to be generated is: <b><?php echo $counter_str?></b></p>
     <p class="fs-3 fw-semibold">Next reference number to be generated: <b><?php echo $new_reference_no?></b></p>
+    <p class="fs-3 fw-semibold">Hashed password:  <b><?php echo $hashed_password?></b></p>
 </body>
 </html>
 

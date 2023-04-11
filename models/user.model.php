@@ -73,7 +73,7 @@ class User {
             if($this->db->execute()) {
                 return true;
             } else {
-                throw new Exception("Failed to add admin.");
+                throw new Exception("Failed to add borrower.");
             }
         } catch (PDOException $e) {
             throw new Exception("Database error: " . $e->getMessage());

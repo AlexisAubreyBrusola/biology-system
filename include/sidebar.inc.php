@@ -1,5 +1,5 @@
 <aside>
-    <ul class="nav nav-pills d-flex flex-column sidebar p-3">
+    <ul class="nav nav-pills d-flex flex-column sidebar p-3" style="position: fixed;">
         <li class="nav-item">
             <a class="d-flex align-items-center nav-link text-decoration-none" href="#"><i class="fa-solid fa-grip me-3 fs-4"></i>Overview</a>
         </li>
@@ -35,5 +35,5 @@
         <li class="nav-item">
             <a class="d-flex align-items-center nav-link text-decoration-none" href="#"><i class="fa-solid fa-user-plus me-2 fs-4"></i>Add Borrower</a>
         </li>
-    </ul>   
+    </ul>
 </aside>
