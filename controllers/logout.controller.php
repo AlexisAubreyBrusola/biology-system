@@ -19,5 +19,5 @@ if ($_SESSION['user_type'] == 'admin') {
 }
 
 // Redirect to the login page
-header("Location: ../view/login.view.php");
+header("Location: ../view/login.php");
 exit();
