@@ -7,8 +7,6 @@
     $db = new DbConn();
     $model = new User($db);
     $controller = new Login($model);
-
-
 ?>
 
 <!DOCTYPE html>

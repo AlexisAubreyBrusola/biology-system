@@ -49,7 +49,7 @@ class Login {
         unset($_SESSION['admin_lastname']);
         unset($_SESSION['user_type']);
         session_destroy();
-        header('Location: ../view/login.view.php');
+        header('Location: ../view/login.php');
     }
 
     public function borrowerLogin($email, $password) {
@@ -87,6 +87,6 @@ class Login {
         unset($_SESSION['contact_no']);
         unset($_SESSION['user_type']);
         session_destroy();
-        header('Location: ../view/login.view.php');
+        header('Location: ../view/login.php');
     }
 }

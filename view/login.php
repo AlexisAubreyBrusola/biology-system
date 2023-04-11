@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
                     </div>
                 <?php } ?>
 
-                <form action="./login.view.php" method="POST">
+                <form action="./login.php" method="POST">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="email"><i class="fa-solid fa-user"></i></span>
                         <input type="email" name="email" id="email" class="form-control border-2" placeholder="Email" aria-label="email" aria-describedby="email" required>
