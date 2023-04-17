@@ -8,6 +8,8 @@ $db = new DBConn;
 $model = new User($db);
 $controller = new AddAdminController($model);
 
+$message = $controller->message;
+
 // Check if form was submitted
 if(isset($_POST['submit'])) {
     // Get form data
@@ -20,9 +22,16 @@ if(isset($_POST['submit'])) {
     // Call addAdminController function
     $result = $controller->addAdminController($firstname, $lastname, $email, $password, $confirm_password);
 
-    // Display message based on result
-	$message = $result ? 'Admin added successfully' : 'Error adding admin';
-	echo '<div class="alert alert-' . ($result ? 'success' : 'danger') . '" role="alert">' . $message . '</div>';
+    // Check if the form submission was successful
+	if ($result[0] == true) {
+		// Show the success message and set the alert type
+		$message = $result[1];
+		$alert_type = "alert-success";
+	} else {
+		// Show the error message
+		$message = $result[1];
+		$alert_type = "alert-danger";
+	}
 }
 ?>
 
@@ -37,6 +46,16 @@ if(isset($_POST['submit'])) {
 	<main class="d-flex flex-nowrap">
 		<?php include_once '../include/sidebar.inc.php'?>
 		<section class="content p-5 w-100" style="margin-left: 320px;">
+			<div id="liveAlertPlaceholder">
+				<?php if (isset($message)) { ?>
+					<div class="alert <?php echo $alert_type; ?> alert-dismissible" role="alert">
+                        <div><?php echo $message ?></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+				<?php
+				}	
+				?>
+			</div>
 			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAdminModal">To add an admin</button>
 
 			<!-- Modal -->
@@ -82,7 +101,7 @@ if(isset($_POST['submit'])) {
 					</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-								<button type="submit" name="submit" class="btn btn-primary bg-blue">Add Admin</button>
+								<button type="submit" name="submit" id="addAdminBtn" class="btn btn-primary bg-blue">Add Admin</button>
 							</div>
 						</form>
 					</div>
