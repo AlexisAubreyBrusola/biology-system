@@ -8,8 +8,6 @@ $db = new DBConn;
 $model = new User($db);
 $controller = new AddAdminController($model);
 
-$message = $controller->message;
-
 // Check if form was submitted
 if(isset($_POST['submit'])) {
     // Get form data
