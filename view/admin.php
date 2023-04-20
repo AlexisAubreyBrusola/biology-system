@@ -85,13 +85,13 @@ if(isset($_POST['submit'])) {
 								<input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter Email" required>
 							</div>
 
-							<label for="password" class="">Password</label>
+							<label for="password" class="col-form-label fw-semibold">Password</label>
 							<div class="input-group mb-3">
 								<input type="password" name="password" id="password" class="form-control form-control-lg border-2 fw-normal"placeholder="Password" aria-label="password" aria-describedby="password" required>
 								<button class="input-group-text border-2" type="button" id="show-password1"><i class="fa-solid fa-eye" id="eye-icon"></i></button>
 							</div>
 
-							<label for="confirmPassword" class="">Re-enter Password</label>
+							<label for="confirmPassword" class="col-form-label fw-semibold">Re-enter Password</label>
 							<div class="input-group mb-3">
 								<input type="password" name="confirm_password" id="confirm_password" class="form-control form-control-lg border-2 fw-normal"placeholder="Confirm Password" aria-label="confirmPassword" aria-describedby="confirmPassword" required>
 								<button class="input-group-text border-2" type="button" id="show-password2"><i class="fa-solid fa-eye" id="eye-icon"></i></button>
