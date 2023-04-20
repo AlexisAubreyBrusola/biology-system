@@ -190,7 +190,7 @@ class User {
     }
 
     // Add Research Staff Info
-    public function addResearchInfo ($borrower_id, $research_staff_id) {
+    public function addResearchStaffInfo ($borrower_id, $research_staff_id) {
         $sql = "INSERT INTO research_staff (borrower_id, research_staff_id) VALUE (:borrower_id, :research_staff_id)";
         $this->db->query($sql);
         $this->db->bind(':borrower_id', $borrower_id);
