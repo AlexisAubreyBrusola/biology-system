@@ -124,7 +124,7 @@ class User {
 
     // Add Student Info
     public function addStudentInfo ($borrower_id, $student_id, $course, $year_block) {
-        $sql = "INSERT INTO student (borrower_id, course, year_block) VALUE (:borrower_id, :student_id, :course, :year_block)";
+        $sql = "INSERT INTO student (borrower_id, student_id, course, year_block) VALUE (:borrower_id, :student_id, :course, :year_block)";
         $this->db->query($sql);
         $this->db->bind(':borrower_id', $borrower_id);
         $this->db->bind(':student_id', $student_id);
@@ -158,7 +158,7 @@ class User {
 
     // Add Faculty Info
     public function addFacultyInfo ($borrower_id, $faculty_id, $department) {
-        $sql = "INSERT INTO faculty (borrower_id, faculty_id, department) VALUE (:borrower_id, :faculty_id, :faculty_id)";
+        $sql = "INSERT INTO faculty (borrower_id, faculty_id, department) VALUE (:borrower_id, :faculty_id, :department)";
         $this->db->query($sql);
         $this->db->bind(':borrower_id', $borrower_id);
         $this->db->bind(':faculty_id', $faculty_id);
@@ -208,7 +208,7 @@ class User {
     }
 
     public function getResearchStaffById ($research_staff_id) {
-        $sql = "SELECT * FROM research_staff WHERE research_staff = :research_staff_id";
+        $sql = "SELECT * FROM research_staff WHERE research_staff_id = :research_staff_id";
         $this->db->query($sql);
         $this->db->bind(":research_staff_id", $research_staff_id);
         try {
