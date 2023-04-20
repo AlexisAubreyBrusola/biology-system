@@ -81,7 +81,7 @@ class User {
     }
 
     public function getBorrowerByEmail($email) {
-        $sql = "SELECT * FROM users WHERE email = :email";
+        $sql = "SELECT * FROM borrowers WHERE email = :email";
         $this->db->query($sql);
         $this->db->bind(":email", $email);
         try {
@@ -94,10 +94,10 @@ class User {
         return $admin;
     }
     
-    public function getBorrowerById($adminId) {
-        $sql = "SELECT * FROM admin WHERE admin_id = :admin_id";
+    public function getBorrowerById($borrowerID) {
+        $sql = "SELECT * FROM borrowers WHERE borrower_id = :borrower_id";
         $this->db->query($sql);
-        $this->db->bind(":admin_id", $adminId);
+        $this->db->bind(":borrower_id", $borrowerID);
         try {
             $admin = $this->db->single();
         } catch (PDOException $e) {
@@ -106,5 +106,19 @@ class User {
             return null;
         }
         return $admin;
+    }
+
+    public function getBorrowerIdByEmail($email) {
+        $sql = "SELECT borrower_id FROM borrowers WHERE email = :email";
+        $this->db->query($sql);
+        $this->db->bind(":email", $email);
+        try {
+            $result = $this->db->single();
+            return $result['borrower_id'];
+        } catch (PDOException $e) {
+            // Handle the database error
+            error_log("Database error: " . $e->getMessage());
+            return null;
+        }
     }
 }
