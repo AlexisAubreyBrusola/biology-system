@@ -6,6 +6,7 @@
     --orange: #FE6701;
     --black: #292C3D;
     --red: #DF2E38;
+    --grey: #676767;
 }
 
 body {
@@ -51,6 +52,11 @@ body {
     background-color: var(--red);
     padding: 1rem;
     border-radius: 5px;
+}
+
+/* Text */
+small {
+    color: var(--grey);
 }
 
 /* Shadow */
