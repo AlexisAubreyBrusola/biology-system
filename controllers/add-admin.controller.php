@@ -31,7 +31,6 @@ class AddAdminController {
                 if($result) {
                     return [true, "Admin Account added successfully"];
                 } else {
-                    $message = "There must be an error in the system, please try again.";
                     return [false, "There must be an error in the system, please try again."];
                 }
             }
