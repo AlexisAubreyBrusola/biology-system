@@ -21,7 +21,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="d-flex align-items-center nav-link text-decoration-none" href="#"><i class="fa-solid fa-microscope me-3 fs-4"></i>Equipment Inventory</a>
+            <a class="d-flex align-items-center nav-link text-decoration-none" href="../view/equipment.php"><i class="fa-solid fa-microscope me-3 fs-4"></i>Equipment Inventory</a>
         </li>
 
         <li class="nav-item">
