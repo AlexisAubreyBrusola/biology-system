@@ -25,7 +25,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="d-flex align-items-center nav-link text-decoration-none" href="#"><i class="fa-solid fa-flask me-3 fs-4"></i>Chemical Inventory</a>
+            <a class="d-flex align-items-center nav-link text-decoration-none" href="../view/chemical.php"><i class="fa-solid fa-flask me-3 fs-4"></i>Chemical Inventory</a>
         </li>
 
         <li class="nav-item">
