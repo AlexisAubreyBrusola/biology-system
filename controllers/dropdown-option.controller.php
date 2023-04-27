@@ -11,4 +11,10 @@ class DropdownOptionController {
         $borrowerTypes = $this->model->getAllBorrowerType();
         return $borrowerTypes;
     }
+
+    public function showEquipmentCategory() {
+        // Retrieve borrower types from the database
+        $equipmentCategory = $this->model->getAllEquipmentCategory();
+        return $equipmentCategory;
+    }
 }

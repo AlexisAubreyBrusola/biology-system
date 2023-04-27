@@ -19,4 +19,18 @@ class DropDownOptionModel {
             return null;
         }
     }
+
+    // FETCH all equipment categories
+    public function getAllEquipmentCategory() {
+        $sql = "SELECT * FROM equipment_category ORDER BY category_name";
+        $this->db->query($sql);
+        try{
+            $results = $this->db->resultSet();
+            return $results;
+        } catch (PDOException $e) {
+            // Handle the database error
+            error_log("Database error: " . $e->getMessage());
+            return null;
+        }
+    }
 }
