@@ -54,25 +54,42 @@ function generateCode($category, $year, $totalNumber, $specificNumber) {
         return $fileName;
     }
     return null;
-}
+  }
 
-include_once './models/equipment.model.php';
-include_once './config/dbConn.config.php';
-function getSimilarEquipmentCode($equipmentCategory) {
-    $currentYear = substr(date('Y'), 0, 2);
-    $similarEquipment = $equipmentCategory. '-' . "$currentYear" . '%';
-    $sql = "SELECT code FROM equipment_code WHERE code LIKE ''$similarEquipment'";
-    $db = new DbConn();
-    $db->query($sql);
-    $results = $db->resultSet();
+  
+  $filePath = './uploads/';
+  function formattedSize($size) {
+    $sizeInKB = $size/1024;
+    $formattedSize = number_format($sizeInKB, 2);
 
-    $output = '';
-    foreach($results as $row) {
-        $output .= $row['equipment_code'] . '<br>';
+    if($formattedSize > 10) {
+        return [$formattedSize, "Shit, your file's too big my guy!"];
+    } else {
+        return $formattedSize;
     }
-    return $output;
-}
+  }
 
+  $size = formattedSize($_FILES['uploadedPhoto']['size']);
+
+  $tempFile = $_FILES['uploadedPhoto']['tmp_name'];
+
+  function saveUploadedFileToFolder($filePath, $tempFile) {
+    if(!file_exists($filePath)) {
+        mkdir($filePath, 0777, true);
+        return "This $filePath doesn't exists my guy. I'ma make it for you!";
+    } elseif(empty($tempFile)) {
+        return "You just submitted a blank my guy. Come on now, THINK!!!!";
+    } else {
+        $filePath = $filePath . "/" . $_FILES['uploadedPhoto']['name'];
+        if(move_uploaded_file($tempFile, $filePath)) {
+            return "Success. the uploaded file is in the folder!";
+        } else {
+            return "Error!";
+        }
+    }
+  }
+
+  $newFileName = "\Th!s str!ng h@s spEciaL\ \ch@r@c-te../rs.jpg"
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +114,7 @@ function getSimilarEquipmentCode($equipmentCategory) {
             <label for="uploadPhoto">Upload photo:</label>
             <input type="file" name="uploadedPhoto" id="uploadedPhoto" accept=".png, .jpg, .jpeg">
 
-            <input type="submit" value="Upload" name="submit">
+            <input type="submit" value="Upload" name="submmit">
         </form>
     </div>
 
@@ -106,12 +123,16 @@ function getSimilarEquipmentCode($equipmentCategory) {
             $fileName = saveUploadedFile();
             if($fileName !== null) {
                 echo $fileName;
+                // print_r($_FILES); //to display the description of the uploaded file
             } 
         ?>
     </b></p>
 
-    <p class="fs-3 fw-semibold">Similar Codes:  <b><?php echo getSimilarEquipmentCode('')?></b></p>
+    <p class="fs-3 fw-semibold">Size of Uploaded File: <b><?php echo $size[0] . ' ' . $size[1];?></b></p>
+    <p class="fs-3 fw-semibold">Upload Message: <b><?php echo saveUploadedFileToFolder($filePath, $tempFile);?></b></p>
+    <p class="fs-3 fw-semibold">Upload Message: <b><?php echo str_replace(array('\\', '/', ' ', ':', '|', '*', '<', '>', '?', '"'), '', strtolower($newFileName));?></b></p>
 
+    <?php include_once './include/footer.inc.php'?>
 </body>
 </html>
 

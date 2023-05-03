@@ -17,8 +17,15 @@
 		$description = $_POST['description'];
 		$expirationDate = $_POST['expirationDate'];
 		$dateAcquired = $_POST['dateAcquired'];
+		$tempFileName = $_FILES['chemicalImage']['tmp_name'];
+		$newFileName = $_FILES['chemicalImage']['name'];
+		$fileSize = $_FILES['chemicalImage']['size'];
+		$uploadError = $_FILES['chemicalImage']['error'];
+		$filePath = '../uploads/chemical-photos/';
 
-		$addChemical = $AddChemicalController->addChemicalController($chemicalName, $container, $containerMaxQuantity, $chemicalQuantity, $description, $expirationDate, $dateAcquired, $chemicalFormula = "Not specified", $status_id = 1, $photoPath = "Not specified", $times_borrowed = 0);
+		$imagePath = $AddChemicalController->getChemicalImageFilePath($fileSize, $filePath, $tempFileName, $newFileName, $uploadError);
+
+		$addChemical = $AddChemicalController->addChemicalController($chemicalName, $container, $containerMaxQuantity, $chemicalQuantity, $description, $expirationDate, $dateAcquired, $imagePath, $chemicalFormula);
 
 		// Check if the form submission was successful
 		if ($addChemical[0] == true) {
@@ -138,8 +145,8 @@
 					        </div>
 
 							<div class="mb-3">
-								<label for="equipmentPhoto" class="form-label">Chemical's Photo</label>
-                                <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control form-control-lg equipmentPhoto" id="equipmentPhoto" name="equipmentPhoto">
+								<label for="chemicalImage" class="form-label">Chemical's Image</label>
+                                <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control form-control-lg chemicalImage" id="chemicalImage" name="chemicalImage">
 					        </div>
                 </div>
 							<div class="modal-footer">

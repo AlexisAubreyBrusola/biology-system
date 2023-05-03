@@ -6,7 +6,7 @@ class AddChemicalController {
         $this->model = $model;
     }
 
-    public function addChemicalController($chemicalName, $container, $containerMaxQuantity, $chemicalQuantity, $description, $expirationDate, $dateAcquired, $chemicalFormula = "Not specified", $status_id = 1, $photoPath = "Not specified", $times_borrowed = 0) {
+    public function addChemicalController($chemicalName, $container, $containerMaxQuantity, $chemicalQuantity, $description, $expirationDate, $dateAcquired, $imagePath = "Not Specified", $chemicalFormula = "Not specified", $status_id = 1, $times_borrowed = 0) {
 
         if(empty($chemicalName) || empty($container) || empty($containerMaxQuantity) || empty($chemicalQuantity)) {
             return [false, 'This fields are required. Please fill up the fields.'];
@@ -19,24 +19,41 @@ class AddChemicalController {
             if($existingChemicalContainer) {
                 return [false, "This chemical's container already exists. Please just put the chemical in to its intended container"];
             } else {
-                $chemical = $this->model->addChemical($chemicalName, $container, $chemicalFormula, $description, $expirationDate, $dateAcquired, $status_id, $photoPath);
+                $chemical = $this->model->addChemical($chemicalName, $container, $chemicalFormula, $description, $expirationDate, $dateAcquired, $status_id, $imagePath);
 
                 if($chemical) {
                     $chemicalId = $this->model->getChemicalIdByNameAndContainer($chemicalName, $container);
                     $chemicalAlreadyInInventory = $this->model->getChemicalInInventory($chemicalId, $container);
 
                     if($chemicalAlreadyInInventory) {
-                        return [false, "This chemical is already Inventorized!"];
+                        return [false, "This chemical is already in inventory!"];
                     } else {
                         $addChemicalToInventory = $this->model->addChemicalToInventory($chemicalId, $container, $containerMaxQuantity, $chemicalQuantity);
 
                         if($addChemicalToInventory) {
-                            return [true, "Chemical is Inventorized!"];
+                            return [true, "Chemical is successfully added in the inventory!"];
                         } else {
-                            return [false, "Failed to inventorize chemical!"];
+                            return [false, "Failed to add chemical in inventory!"];
                         }
                     }
                 }
+            }
+        }
+    }
+
+    public function getChemicalImageFilePath($fileSize, $filePath, $tempFileName, $fileName, $uploadError) {
+        $sizeInKB = $fileSize/1024;
+        $formattedSize = number_format($sizeInKB, 2);
+        if($formattedSize > 2048) {
+            return [false, "The file size of the image is too large. Size of the image should not exceed 2.0MB"];
+        } elseif(empty($tempFileName)) {
+            return [false, "There is no image uploaded. Please upload an image"];
+        } else {
+            $newFilePath = $filePath . '/' . str_replace(array('\\', '/', ' ', "'", ':', '|', '*', '<', '>', '?', '"'), '', $fileName);
+            if(move_uploaded_file($tempFileName, $newFilePath)) {
+                return $fileName;
+            } else {
+                return [false, "Upload error: $uploadError"];
             }
         }
     }
