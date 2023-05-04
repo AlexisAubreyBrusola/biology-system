@@ -25,7 +25,7 @@
 
 		$imagePath = $AddChemicalController->getChemicalImageFilePath($fileSize, $filePath, $tempFileName, $newFileName, $uploadError);
 
-		$addChemical = $AddChemicalController->addChemicalController($chemicalName, $container, $containerMaxQuantity, $chemicalQuantity, $description, $expirationDate, $dateAcquired, $imagePath, $chemicalFormula);
+		$addChemical = $AddChemicalController->addChemicalController($chemicalName, $container, $containerMaxQuantity, $chemicalQuantity, $description, $expirationDate, $dateAcquired, $fileSize, $imagePath, $chemicalFormula);
 
 		// Check if the form submission was successful
 		if ($addChemical[0] == true) {

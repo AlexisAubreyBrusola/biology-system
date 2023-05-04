@@ -6,7 +6,7 @@ class AddChemicalController {
         $this->model = $model;
     }
 
-    public function addChemicalController($chemicalName, $container, $containerMaxQuantity, $chemicalQuantity, $description, $expirationDate, $dateAcquired, $imagePath = "Not Specified", $chemicalFormula = "Not specified", $status_id = 1, $times_borrowed = 0) {
+    public function addChemicalController($chemicalName, $container, $containerMaxQuantity, $chemicalQuantity, $description, $expirationDate, $dateAcquired, $fileSize, $imagePath = "Not Specified", $chemicalFormula = "Not specified", $status_id = 1, $times_borrowed = 0) {
 
         if(empty($chemicalName) || empty($container) || empty($containerMaxQuantity) || empty($chemicalQuantity)) {
             return [false, 'This fields are required. Please fill up the fields.'];
@@ -14,6 +14,8 @@ class AddChemicalController {
             return [false, "The container should be a positive number!"];
         } elseif($chemicalQuantity > $containerMaxQuantity) {
             return [false, "Failed to add Chemical to the database. Chemical's should be equal to the Container's maximum quantity"];
+        } elseif($fileSize > 2097152){
+            return [false, 'The file size of the image is too large. Size of the image should not exceed 2.0MB. Failed to add equipment!'];
         } else {
             $existingChemicalContainer = $this->model->getChemicalIdByNameAndContainer($chemicalName, $container);
             if($existingChemicalContainer) {
