@@ -9,7 +9,7 @@ class AddAdminController {
     public function addAdminController($firstname, $lastname, $email, $password, $confirm_password) {
         // Validate inputs
         // Validate inputs
-        if(empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($confirm_password) || empty($contact_no)) {
+        if(empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($confirm_password)) {
             return [false, "Please fill-up all the fields. Failed to add account!"];
 
         } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
