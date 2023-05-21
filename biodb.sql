@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2023 at 05:01 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 21, 2023 at 08:03 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,9 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `firstname`, `lastname`, `email`, `password`, `date_created`) VALUES
-(1, 'Admin1', 'Lastname', 'admin@gmail.com', '$2y$10$jUeZKPpbIRtgTW326MkUP.snrERlCg.XissqJR33Q71eqrHEB7Ab.', '2023-03-30 10:42:52'),
-(2, 'Alexis Aubrey', 'Brusola', 'alexisaubreybonon.brusola@bicol-u.edu.ph', '$2y$10$VgylxSa8UK66LLwfNdpQ3.Z49xPwWI9GoPgQoktIiy//mbME3Y3ym', '2023-03-30 10:42:52'),
-(3, 'Admin', 'Two', 'admin2@gmail.com', '$2y$10$Fi.7cCfaWerAUC/aTLdFj.9MtxHILACsJHGtcPwzQ7ViHFz9aCioi', '2023-04-11 10:06:37');
+(1, 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$iHOcKw1bVIjwm.cOGN4Zi..0fZfMpgn8wat6ixj2C8YueTGaWscMS', '2023-05-21 13:57:15');
 
 -- --------------------------------------------------------
 
@@ -302,6 +300,18 @@ CREATE TABLE `status_table` (
   `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `status_table`
+--
+
+INSERT INTO `status_table` (`status_id`, `status_name`, `description`) VALUES
+(1, 'available', 'Equipment or Chemical is available for borrowing'),
+(2, 'borrowed', 'Equipment or Chemical is borrowed'),
+(3, 'broken', 'Equipment is broken'),
+(4, 'lost', 'Equipment is lost'),
+(5, 'empty', 'Chemical is empty or has no stock available'),
+(6, 'expired', 'Chemical is expired');
+
 -- --------------------------------------------------------
 
 --
@@ -324,8 +334,6 @@ CREATE TABLE `student` (
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`),
-  ADD UNIQUE KEY `firstname` (`firstname`),
-  ADD UNIQUE KEY `lastname` (`lastname`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
@@ -479,7 +487,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `basket`
@@ -551,7 +559,7 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `status_table`
 --
 ALTER TABLE `status_table`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
